@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import MuseScore 3.0
 
 MuseScore {
@@ -6,6 +6,14 @@ MuseScore {
       description: "Enforces measure actual duration to match the time signature for it.\nEither select a range of measures on which to run or runs on the entire score."
       version: "1.0.0"
       requiresScore: true
+
+      //4.4 title: qsTr("Enforce Time Signatures")
+      Component.onCompleted : {
+            if (mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
+                  title = qsTr("Enforce Time Signatures");
+            }
+      }
+
       onRun: {
             // Get applicable range
             var sel = curScore ? curScore.selection : null;
